@@ -12,7 +12,6 @@ public class TextController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		text.text = "Press Space to begin your adventure...";
 		myState = States.cell_0;
 	}
 	
