@@ -20,25 +20,15 @@ public class TextController : MonoBehaviour {
 	void Update () {
 		print (myState);
 
-		if (myState == States.cell_0) {
-			state_cell_0 ();
-		} else if (myState == States.cell_1) {
-			state_cell_1 ();
-		} else if (myState == States.sheets_0) {
-			state_sheets_0 ();
-		} else if (myState == States.lock_0) {
-			state_lock_0 ();
-		} else if (myState == States.mirror) {
-			state_mirror ();
-		} else if (myState == States.cell_mirror) {
-			state_cell_mirror ();
-		} else if (myState == States.sheets_1) {
-			state_sheets_1 ();
-		} else if (myState == States.lock_1) {
-			state_lock_1 ();
-		}  else if (myState == States.freedom) {
-			state_freedom ();
-		} 
+		if (myState == States.cell_0) 			{state_cell_0 ();}
+		else if (myState == States.cell_1) 		{state_cell_1 ();}
+		else if (myState == States.sheets_0)	{state_sheets_0 ();}
+		else if (myState == States.lock_0) 		{state_lock_0 ();}
+		else if (myState == States.mirror) 		{state_mirror ();}
+		else if (myState == States.cell_mirror) {state_cell_mirror ();}
+		else if (myState == States.sheets_1)	{state_sheets_1 ();}
+		else if (myState == States.lock_1) 		{state_lock_1 ();}
+		else if (myState == States.freedom)		{state_freedom ();}
 	}
 
 	void state_cell_0() {
@@ -51,13 +41,9 @@ public class TextController : MonoBehaviour {
 			"the odd mirror hanging on the wall.\n\n" +
 			"Press S to view Sheets, M to view Mirror, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S)) {
-			myState = States.sheets_0;
-		} else if (Input.GetKeyDown (KeyCode.M)) {
-			myState = States.mirror;
-		} else if (Input.GetKeyDown (KeyCode.L)) {
-			myState = States.lock_0;
-		}
+		if (Input.GetKeyDown (KeyCode.S)) 		{myState = States.sheets_0;}
+		else if (Input.GetKeyDown (KeyCode.M))  {myState = States.mirror;}
+		else if (Input.GetKeyDown (KeyCode.L))  {myState = States.lock_0;}
 	}
 
 	void state_cell_1() {
@@ -66,13 +52,9 @@ public class TextController : MonoBehaviour {
 			"mirror and the lock keeping you from freedom.\n\n" +
 			"Press S to view Sheets, M to view Mirror, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S)) {
-			myState = States.sheets_0;
-		} else if (Input.GetKeyDown (KeyCode.M)) {
-			myState = States.mirror;
-		} else if (Input.GetKeyDown (KeyCode.L)) {
-			myState = States.lock_0;
-		}
+		if (Input.GetKeyDown (KeyCode.S))      	{myState = States.sheets_0;}
+		else if (Input.GetKeyDown (KeyCode.M))	{myState = States.mirror;}
+		else if (Input.GetKeyDown (KeyCode.L)) 	{myState = States.lock_0;}
 	}
 
 	void state_sheets_0() {
@@ -80,9 +62,7 @@ public class TextController : MonoBehaviour {
 			"floor, they've seen better times.\n\n" +
 			"Press R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			myState = States.cell_1;
-		}
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.cell_1;}
 	}
 
 	void state_mirror() {
@@ -93,11 +73,8 @@ public class TextController : MonoBehaviour {
 			"hangs a small ornate key.\n\n" +
 			"Press T to take the key, or R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			myState = States.cell_1;
-		} else if (Input.GetKeyDown (KeyCode.T)) {
-			myState = States.cell_mirror;
-		}
+		if (Input.GetKeyDown (KeyCode.R)) 	   	{myState = States.cell_1;}
+		else if (Input.GetKeyDown (KeyCode.T)) 	{myState = States.cell_mirror;}
 	}
 
 	void state_lock_0() {
@@ -106,20 +83,15 @@ public class TextController : MonoBehaviour {
 			"No amount of pushing, pulling or screaming at the door has any effect.\n\n" +
 			"Press R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			myState = States.cell_1;
-		}
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.cell_1;}
 	}
 
 	void state_cell_mirror() {
 		text.text = "Key in hand you return your gaze to the filthy cell.\n\n" +
 			"Press S to view Sheets, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S)) {
-			myState = States.sheets_1;
-		} else if (Input.GetKeyDown (KeyCode.L)) {
-			myState = States.lock_1;
-		}
+		if (Input.GetKeyDown (KeyCode.S))		{myState = States.sheets_1;}
+		else if (Input.GetKeyDown (KeyCode.L)) 	{myState = States.lock_1;}
 	}
 
 	void state_sheets_1() {
@@ -127,9 +99,7 @@ public class TextController : MonoBehaviour {
 			"few moments ago.\n\n" +
 			"Press R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			myState = States.cell_mirror;
-		}
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.cell_mirror;}
 	}
 
 	void state_lock_1() {
@@ -137,11 +107,8 @@ public class TextController : MonoBehaviour {
 			"the ornate markings on the key found behind the mirror.\n\n" +
 			"Press U to unlock the door, or R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			myState = States.cell_mirror;
-		} else if (Input.GetKeyDown (KeyCode.U)) {
-			myState = States.freedom;
-		}
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.cell_mirror;}
+		else if (Input.GetKeyDown (KeyCode.U)) 	{myState = States.freedom;}
 	}
 
 	void state_freedom() {
@@ -151,9 +118,7 @@ public class TextController : MonoBehaviour {
 			"cell for what you hope will the the last time.\n\n" +
 			"You have escaped!!! Press Return to restart.";
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
-			myState = States.cell_0;
-		}
+		if (Input.GetKeyDown (KeyCode.Return)) 	{myState = States.cell_0;}
 	}
 
 }
