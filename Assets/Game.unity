@@ -242,7 +242,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 34
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -253,13 +253,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ante orci,
-    consequat in faucibus id, sodales eget massa. In efficitur massa sapien, non rhoncus
-    nunc cursus vitae. Ut nec consequat mi, vel tempor mi. Donec ut nisl tristique,
-    bibendum metus nec, euismod nulla. Sed vestibulum aliquam risus, sed cursus velit
-    placerat id. Pellentesque habitant morbi tristique senectus et netus et malesuada
-    fames ac turpis egestas. Ut ut mi tincidunt, euismod mauris sit amet, imperdiet
-    felis. Aliquam mattis lectus non ipsum placerat aliquet.\r\n\r\n"
+  m_Text: 
 --- !u!222 &228671360
 CanvasRenderer:
   m_ObjectHideFlags: 0
