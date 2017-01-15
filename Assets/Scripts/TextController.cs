@@ -9,7 +9,8 @@ public class TextController : MonoBehaviour {
 
 	private enum States {
 		cell_0, cell_1, mirror, sheets_0, lock_0, cell_mirror, sheets_1, lock_1, corridor_0,
-		stairs_0, closet_door, floor
+		stairs_0, closet_door, floor, stairs_1, corridor_1, in_closet, stairs_2, corridor_2,
+		corridor_3, courtyard
 	};
 	private States myState;
 
@@ -31,11 +32,19 @@ public class TextController : MonoBehaviour {
 		else if (myState == States.sheets_1)	{sheets_1 ();}
 		else if (myState == States.lock_1) 		{lock_1 ();}
 		else if (myState == States.corridor_0)	{corridor_0 ();}
-//		else if (myState == States.stairs_0)	{stairs_0 ();}
-//		else if (myState == States.closet_door)	{closet_door ();}
-//		else if (myState == States.floor)		{floor ();}
+		else if (myState == States.stairs_0)	{stairs_0 ();}
+		else if (myState == States.closet_door)	{closet_door ();}
+		else if (myState == States.floor)		{floor ();}
+		else if (myState == States.stairs_1)	{stairs_1 ();}
+		else if (myState == States.corridor_1)	{corridor_1 ();}
+		else if (myState == States.in_closet)	{in_closet ();}
+		else if (myState == States.stairs_2)	{stairs_2 ();}
+		else if (myState == States.corridor_2)	{corridor_2 ();}
+		else if (myState == States.corridor_3)	{corridor_3 ();}
+		else if (myState == States.courtyard)	{courtyard ();}
 	}
 
+	#region State handler methods
 	void cell_0() {
 		text.text = "You awaken groggily in the corner of a dark, dank room. " +
 			"As your eyes grow accustomed to the gloom you realise " +
@@ -46,7 +55,7 @@ public class TextController : MonoBehaviour {
 			"the odd mirror hanging on the wall.\n\n" +
 			"Press S to view Sheets, M to view Mirror, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S)) 		{myState = States.sheets_0;}
+		if 		(Input.GetKeyDown (KeyCode.S)) 	{myState = States.sheets_0;}
 		else if (Input.GetKeyDown (KeyCode.M))  {myState = States.mirror;}
 		else if (Input.GetKeyDown (KeyCode.L))  {myState = States.lock_0;}
 	}
@@ -57,7 +66,7 @@ public class TextController : MonoBehaviour {
 			"mirror and the lock keeping you from freedom.\n\n" +
 			"Press S to view Sheets, M to view Mirror, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S))      	{myState = States.sheets_0;}
+		if 	(Input.GetKeyDown (KeyCode.S))     	{myState = States.sheets_0;}
 		else if (Input.GetKeyDown (KeyCode.M))	{myState = States.mirror;}
 		else if (Input.GetKeyDown (KeyCode.L)) 	{myState = States.lock_0;}
 	}
@@ -78,7 +87,7 @@ public class TextController : MonoBehaviour {
 			"hangs a small ornate key.\n\n" +
 			"Press T to take the key, or R to continue searching the cell.";
 
-		if (Input.GetKeyDown (KeyCode.R)) 	   	{myState = States.cell_1;}
+		if 		(Input.GetKeyDown (KeyCode.R))	{myState = States.cell_1;}
 		else if (Input.GetKeyDown (KeyCode.T)) 	{myState = States.cell_mirror;}
 	}
 
@@ -95,7 +104,7 @@ public class TextController : MonoBehaviour {
 		text.text = "Key in hand you return your gaze to the filthy cell.\n\n" +
 			"Press S to view Sheets, or L for Lock.";
 
-		if (Input.GetKeyDown (KeyCode.S))		{myState = States.sheets_1;}
+		if 		(Input.GetKeyDown (KeyCode.S))	{myState = States.sheets_1;}
 		else if (Input.GetKeyDown (KeyCode.L)) 	{myState = States.lock_1;}
 	}
 
@@ -123,9 +132,101 @@ public class TextController : MonoBehaviour {
 			"left you see a dusty closet and something glistens in the dirt of the floor.\n\n" +
 			"Press S to climb the stairs, C to examine the closet, or F to search the floor.";
 
-		if (Input.GetKeyDown (KeyCode.S)) 		{myState = States.stairs_0;}
+		if 		(Input.GetKeyDown (KeyCode.S)) 	{myState = States.stairs_0;}
 		else if (Input.GetKeyDown (KeyCode.C)) 	{myState = States.closet_door;}
 		else if (Input.GetKeyDown (KeyCode.F)) 	{myState = States.floor;}
 	}
+
+	void stairs_0() {
+		text.text = "As you get close to the top of the stairs the sound of " +
+			"movement and voices freezes you in your tracks.\n\n" +
+			"Press R to return to the corridor.";
+
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.corridor_0;}
+	}
+
+	void closet_door() {
+		text.text = "The closet looks recently used, but is firmly locked and no key in sight.\n\n" +
+			"Press R to return to the corridor.";
+
+		if (Input.GetKeyDown (KeyCode.R)) {myState = States.corridor_0;}
+	}
+		
+	void floor() {
+		text.text = "Kneeling down to examine the glinting object on the floor you find a " +
+			"small brass hairpin.\n\n" +
+			"Press R to return to the corridor.";
+
+		if (Input.GetKeyDown (KeyCode.R)) {myState = States.corridor_1;}
+	}
+
+	void corridor_1() {
+		text.text = "Hairpin in hand you peer around the corridor once more, you thieving instincts " +
+			"immediately kick into overdrive and your attention switches from the stairs to the " +
+			"locked closet.\n\n" +
+			"Press P to pick the closet lock, or S to climb the stairs.";
+		
+		if 		(Input.GetKeyDown (KeyCode.P)) 	{myState = States.in_closet;}
+		else if (Input.GetKeyDown (KeyCode.S)) 	{myState = States.stairs_1;}
+	}
+
+	void stairs_1() {
+		text.text = "You barely make it 5 steps before the sound of raised voices make you freeze. " +
+			"An unseen woman screams 'The masters carriage is filthy, I want it cleaned NOW'.\n\n" +
+			"Press R to return to the corridor.";
+
+		if (Input.GetKeyDown (KeyCode.R)) 		{myState = States.corridor_1;}
+	}
+
+	void in_closet() {
+		text.text = "The closet lock opens easily and inside you find the uniform of a royal " +
+			"cleaner, it looks to be just about your size.\n\n" +
+			"Press D to disguise as a cleaner, or R to return to the corridor.";
+
+		if 		(Input.GetKeyDown (KeyCode.R)) 	{myState = States.corridor_2;}
+		else if (Input.GetKeyDown (KeyCode.D)) 	{myState = States.corridor_3;}
+	}
+
+	void corridor_2() {
+		text.text = "Closing the closet door you hear footsteps coming from the direction of the" +
+			"stairs.\n\n" +
+			"Press D to disguise as a cleaner, or S to approach the stairs.";
+
+		if 		(Input.GetKeyDown (KeyCode.S)) 	{myState = States.stairs_2;}
+		else if (Input.GetKeyDown (KeyCode.D)) 	{myState = States.corridor_3;}
+	}
+
+	void stairs_2() {
+		text.text = "The distant footsteps turn into a thunder of shouting and metallic clanking " +
+			"as pouring from the stairs come five heavily armed guards, each sword at the ready " +
+			"with eyes locked on your fear frozen frame.\n\n" +
+			"You do not feel the first blow only the rush of breath in your throat and the sound " +
+			"of your own bubbling screams as the life sprays forth from the gaping wound in your neck.\n\n" +
+			"You die, cold and alone. Press P to play again.";
+
+		if (Input.GetKeyDown (KeyCode.P)) 		{myState = States.cell_0;}
+	}
+
+	void corridor_3() {
+		text.text = "You slip on the final piece of the cleaners outfit and freeze in panic on feeling " +
+			"a sharp tap on your shoulder.\n\n" +
+			"Turning slowly you come face to face with a red faced guard who spits at you 'Did you not " +
+			"hear the housekeeper!! Get going and clean the carriage, NOW, lest I crack your head'.\n\n" +
+			"Press S to climb the stairs.";
+
+		if (Input.GetKeyDown (KeyCode.S)) 		{myState = States.courtyard;}
+	}
+
+	void courtyard() {
+		text.text = "As you emerge at the top of the stairs a tall stern woman appears to your left and " +
+			"proceeds to painfully dragging you towards the front door.\n\n" +
+			"'Get cleaning wretch' is the last thing you hear as the door slams shut and you emerge " +
+			"blinking on the streets of Ankh Morpok.\n\n" +
+			"Your legs immediately start running towards the Mages tower and home, you don't once look back.\n\n" +
+			"You are FREE !!!. Press P to play again.";
+
+		if (Input.GetKeyDown (KeyCode.P)) 		{myState = States.cell_0;}
+	}
+	#endregion
 
 }
